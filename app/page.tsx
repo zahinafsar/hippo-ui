@@ -85,24 +85,24 @@ function FloatingNav() {
 
 const FEATURES = [
   {
-    icon: Layers,
-    title: "33 components",
-    body: "Buttons, dialogs, tables, command palette, date picker — admin-dashboard ready.",
+    icon: Code2,
+    title: "No headless UI",
+    body: "Zero external component packages. Every line of HippoUI lives inside your codebase. You ship it, you own it.",
   },
   {
-    icon: Code2,
-    title: "Copy, don't install",
-    body: "Source lives in your repo. Edit anything. No package upgrades to worry about.",
+    icon: Layers,
+    title: "Tailwind + JavaScript, balanced",
+    body: "Not thousands of utility classes crammed into one div. Tailwind for tokens, JavaScript for logic. The right tool for each job.",
   },
   {
     icon: Zap,
-    title: "React-first",
-    body: "State and behavior in React. Tailwind only for color, spacing, typography.",
+    title: "We respect JavaScript",
+    body: "We don't hide behind DSLs or config-driven variants. State, behavior, composition — handled in plain React, the way it was meant to be.",
   },
   {
     icon: Sparkles,
-    title: "Zero variant cruft",
-    body: "No cva, no clsx, no tailwind-merge. Plain maps and keyof typeof.",
+    title: "Zero requirements",
+    body: "No CLI to install. No config to wire. One curl command drops the components into your repo. Start in seconds.",
   },
 ];
 
@@ -111,9 +111,13 @@ function Features() {
     <section className="relative z-10 mx-auto w-full max-w-5xl px-4 py-32">
       <div className="mb-16 text-center">
         <div className="text-xs font-semibold uppercase tracking-wider" style={{ color: ACCENT }}>
-          Why hippo-ui
+          Our motivations
         </div>
-        <h2 className="mt-3 text-4xl font-bold text-white">Built different</h2>
+        <h2 className="mt-3 text-4xl font-bold text-white">Why HippoUI exists</h2>
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-white/50">
+          We got tired of bloated component libraries, invisible abstractions,
+          and utility-class soup. HippoUI is our answer: honest code you can read, own, and change.
+        </p>
       </div>
       <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04] sm:grid-cols-2">
         {FEATURES.map((f) => (
@@ -171,13 +175,13 @@ export default function Home() {
         </div>
 
         <h1 className="mb-6 max-w-4xl text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl">
-          UI components,<br />without the bloat.
+          Honest UI.<br />In your codebase.
         </h1>
 
         <p className="mb-10 max-w-xl text-base leading-relaxed text-white/50 sm:text-lg">
-          Tailwind for tokens. React for logic. No cva, no clsx, no tailwind-merge.
+          No headless packages. No utility-class soup. No config to wire.
           <br className="hidden sm:block" />
-          Just components you copy into your repo.
+          Just Tailwind and JavaScript, working together the way they should.
         </p>
 
         <div className="mb-24 flex flex-col items-center gap-4 sm:flex-row">
