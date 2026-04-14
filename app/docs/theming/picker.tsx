@@ -4,9 +4,20 @@ import { useMemo, useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { THEMES, themeToCss, type Theme } from "./themes";
+import { ThemeCompare } from "./compare";
 
-export function ThemePicker() {
-  const [active, setActive] = useState<Theme>(THEMES[0]);
+type Props = {
+  active?: Theme;
+  onChange?: (t: Theme) => void;
+};
+
+export function ThemePicker({ active: activeProp, onChange }: Props = {}) {
+  const [internal, setInternal] = useState<Theme>(THEMES[0]);
+  const active = activeProp ?? internal;
+  const setActive = (t: Theme) => {
+    if (onChange) onChange(t);
+    else setInternal(t);
+  };
   const [copied, setCopied] = useState(false);
   const css = useMemo(() => themeToCss(active), [active]);
 
@@ -43,55 +54,7 @@ export function ThemePicker() {
         })}
       </div>
 
-      <div
-        className="rounded-md border border-border p-4"
-        style={{
-          background: active.light["--background"],
-          color: active.light["--foreground"],
-        }}
-      >
-        <div className="mb-3 flex items-center gap-2">
-          {(
-            ["primary", "secondary", "accent", "muted", "destructive"] as const
-          ).map((token) => (
-            <span
-              key={token}
-              className="h-6 w-6 rounded-full border"
-              style={{
-                background: active.light[`--${token}`],
-                borderColor: active.light["--border"],
-              }}
-              title={token}
-            />
-          ))}
-        </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <span
-            className="rounded-md px-3 py-1.5 text-xs font-medium"
-            style={{
-              background: active.light["--primary"],
-              color: active.light["--primary-foreground"],
-            }}
-          >
-            Primary
-          </span>
-          <span
-            className="rounded-md px-3 py-1.5 text-xs font-medium"
-            style={{
-              background: active.light["--secondary"],
-              color: active.light["--secondary-foreground"],
-            }}
-          >
-            Secondary
-          </span>
-          <span
-            className="rounded-md px-3 py-1.5 text-xs"
-            style={{ color: active.light["--muted-foreground"] }}
-          >
-            Muted text
-          </span>
-        </div>
-      </div>
+      <ThemeCompare theme={active} />
 
       <div className="relative overflow-hidden rounded-md border border-border bg-muted">
         <div className="flex items-center justify-between border-b border-border px-4 py-2">

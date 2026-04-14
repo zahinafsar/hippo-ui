@@ -23,15 +23,15 @@ function applyPalette(name: ThemeName) {
   el.textContent = themeToCss(theme);
 }
 
-export function PaletteProvider({ children }: { children: ReactNode }) {
-  const [palette, setPaletteState] = useState<ThemeName>("zinc");
+function readInitial(): ThemeName {
+  if (typeof window === "undefined") return THEMES[0].name as ThemeName;
+  const stored = window.localStorage.getItem(STORAGE_KEY) as ThemeName | null;
+  if (stored && THEMES.some((t) => t.name === stored)) return stored;
+  return THEMES[0].name as ThemeName;
+}
 
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as ThemeName | null;
-    if (stored && THEMES.some((t) => t.name === stored)) {
-      setPaletteState(stored);
-    }
-  }, []);
+export function PaletteProvider({ children }: { children: ReactNode }) {
+  const [palette, setPaletteState] = useState<ThemeName>(readInitial);
 
   useEffect(() => {
     applyPalette(palette);
