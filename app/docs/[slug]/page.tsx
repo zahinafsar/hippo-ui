@@ -18,6 +18,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
   const source = await getSource(slug);
   const example = examples[slug as ComponentSlug];
   const usageCode = usage[slug as ComponentSlug];
+  const installCmd = `curl -fsSL https://zahinafsar.github.io/hippo-ui/install.sh | bash -s ${slug}`;
 
   return (
     <div className="flex flex-col gap-6">
@@ -28,7 +29,16 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
       <DemoTabs
         preview={example}
         code={<CodeBlock code={usageCode} />}
-        install={<CodeBlock code={source} />}
+        install={
+          <div className="flex flex-col gap-3">
+            <p className="text-sm text-muted-foreground">
+              Run this in your project root to pull <code className="rounded bg-muted px-1 py-0.5 text-xs">{slug}</code> and its helpers:
+            </p>
+            <CodeBlock code={installCmd} />
+            <p className="text-sm text-muted-foreground">Or copy the source directly:</p>
+            <CodeBlock code={source} />
+          </div>
+        }
       />
     </div>
   );

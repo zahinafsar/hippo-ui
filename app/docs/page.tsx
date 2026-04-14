@@ -29,7 +29,14 @@ export default async function DocsIndex() {
           <DemoTabs
             preview={examples[c.slug]}
             code={<CodeBlock code={usage[c.slug]} />}
-            install={<CodeBlock code={c.source} />}
+            install={
+              <div className="flex flex-col gap-3">
+                <p className="text-sm text-muted-foreground">Run in your project root:</p>
+                <CodeBlock code={`curl -fsSL https://zahinafsar.github.io/hippo-ui/install.sh | bash -s ${c.slug}`} />
+                <p className="text-sm text-muted-foreground">Or copy the source:</p>
+                <CodeBlock code={c.source} />
+              </div>
+            }
           />
         </section>
       ))}

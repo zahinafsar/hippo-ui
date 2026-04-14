@@ -17,7 +17,14 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
       <div className="flex">
         <aside className="sticky top-14 h-[calc(100vh-3.5rem)] w-56 shrink-0 overflow-y-auto border-r border-border p-6">
           <nav className="flex flex-col gap-1">
-            <div className="mb-2 text-xs font-semibold uppercase text-muted-foreground">Components</div>
+            <div className="mb-2 text-xs font-semibold uppercase text-muted-foreground">Get Started</div>
+            <Link
+              href="/docs/getting-started"
+              className="rounded-md px-2 py-1.5 text-sm text-foreground hover:bg-accent"
+            >
+              Introduction
+            </Link>
+            <div className="mb-2 mt-4 text-xs font-semibold uppercase text-muted-foreground">Components</div>
             {registry.map((c) => (
               <Link
                 key={c.slug}
