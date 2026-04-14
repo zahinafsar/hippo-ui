@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/docs/theme-provider";
+import { PaletteProvider } from "@/components/docs/palette-provider";
 import { Toaster } from "@/components/ui/toast";
 import { ConfirmRoot } from "@/components/ui/confirm-modal";
 
@@ -18,9 +19,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
-          {children}
-          <Toaster />
-          <ConfirmRoot />
+          <PaletteProvider>
+            {children}
+            <Toaster />
+            <ConfirmRoot />
+          </PaletteProvider>
         </ThemeProvider>
       </body>
     </html>

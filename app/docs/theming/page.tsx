@@ -1,7 +1,8 @@
 import { CodeBlock } from "@/components/docs/code-block";
 import { ThemePicker } from "./picker";
+import { THEMES } from "./themes";
 
-const cliCmd = `npx myhippo theme zinc`;
+const cliCmd = `npx myhippo theme midnight`;
 
 const importCmd = `/* app/globals.css */
 @import "tailwindcss";
@@ -36,8 +37,9 @@ export default function Theming() {
       <div>
         <h1 className="text-4xl font-bold">Theming</h1>
         <p className="mt-2 text-muted-foreground">
-          Pick a preset, copy the CSS, paste into your Tailwind global stylesheet. Every component reads CSS variables —
-          swap the variables, swap the look.
+          12 curated presets inspired by real products and editor classics — Linear, Stripe, Anthropic, Nord, Dracula,
+          Solarized, Monokai, Catppuccin. Pick one, copy the CSS, paste into your Tailwind global stylesheet. Every
+          component reads CSS variables, so swapping the palette swaps the whole UI.
         </p>
       </div>
 
@@ -57,13 +59,21 @@ export default function Theming() {
           chosen preset to <code className="rounded bg-muted px-1 py-0.5 text-xs">styles/hippo-theme.css</code>.
         </p>
         <CodeBlock code={cliCmd} lang="bash" />
-        <p className="text-sm text-muted-foreground">
-          Available presets: <code className="rounded bg-muted px-1 py-0.5 text-xs">zinc</code>,{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">slate</code>,{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">rose</code>,{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">emerald</code>,{" "}
-          <code className="rounded bg-muted px-1 py-0.5 text-xs">amber</code>.
-        </p>
+        <p className="text-sm text-muted-foreground">Available presets:</p>
+        <div className="flex flex-wrap gap-1.5">
+          {THEMES.map((t) => (
+            <code
+              key={t.name}
+              className="inline-flex items-center gap-1.5 rounded bg-muted px-2 py-1 text-xs"
+            >
+              <span
+                className="h-3 w-3 rounded-full border border-border"
+                style={{ background: t.swatch }}
+              />
+              {t.name}
+            </code>
+          ))}
+        </div>
       </section>
 
       <section className="flex flex-col gap-3">

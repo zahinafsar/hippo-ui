@@ -4,6 +4,7 @@ import logo from "@/public/logo.png";
 import { ReactNode } from "react";
 import { registry } from "@/lib/registry";
 import { ThemeToggle } from "@/components/docs/theme-toggle";
+import { PaletteSwitcher } from "@/components/docs/palette-switcher";
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
@@ -13,7 +14,10 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
           <Image src={logo} alt="hippo-ui" width={24} height={24} />
           HippoUI
         </Link>
-        <ThemeToggle />
+        <div className="flex items-center gap-1">
+          <PaletteSwitcher />
+          <ThemeToggle />
+        </div>
       </header>
       <div className="flex">
         <aside className="sticky top-14 h-[calc(100vh-3.5rem)] w-56 shrink-0 overflow-y-auto border-r border-border p-6">

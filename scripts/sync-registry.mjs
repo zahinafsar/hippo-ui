@@ -1,4 +1,4 @@
-import { readdir, mkdir, copyFile, writeFile, rm } from "node:fs/promises";
+import { readdir, mkdir, copyFile, writeFile, rm, readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 
@@ -29,12 +29,29 @@ for (const f of LIB_FILES) {
   await copyFile(path.join(srcLib, f), path.join(outLib, f));
 }
 
-const themeFiles = existsSync(srcThemes)
-  ? (await readdir(srcThemes)).filter((f) => f.endsWith(".css"))
-  : [];
-for (const f of themeFiles) {
-  await copyFile(path.join(srcThemes, f), path.join(outThemes, f));
+const themesJsonPath = path.join(srcThemes, "themes.json");
+const themesData = JSON.parse(await readFile(themesJsonPath, "utf8"));
+const themeToCss = (theme) => {
+  const vars = (obj) =>
+    Object.entries(obj)
+      .map(([k, v]) => `  ${k}: ${v};`)
+      .join("\n");
+  return `:root {\n${vars(theme.light)}\n}\n\n.dark {\n${vars(theme.dark)}\n}\n`;
+};
+const themeFiles = [];
+for (const theme of themesData) {
+  const dest = path.join(outThemes, `${theme.name}.css`);
+  await writeFile(dest, themeToCss(theme));
+  themeFiles.push(theme.name);
 }
+await writeFile(
+  path.join(outThemes, "index.json"),
+  JSON.stringify(
+    themesData.map((t) => ({ name: t.name, label: t.label, swatch: t.swatch })),
+    null,
+    2
+  )
+);
 
 const skillFiles = existsSync(srcSkills)
   ? (await readdir(srcSkills)).filter((f) => f.endsWith(".md"))
