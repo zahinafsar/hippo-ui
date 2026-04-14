@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/logo.png";
 import { useEffect, useRef } from "react";
-import { ArrowRight, Sparkles, Zap, Layers, Code2 } from "lucide-react";
+import { ArrowRight, Zap, Layers, Code2, Wand2 } from "lucide-react";
 
 function GithubIcon({ className }: { className?: string }) {
   return (
@@ -101,9 +101,9 @@ const FEATURES = [
     body: "We don't hide behind DSLs or config-driven variants. State, behavior, composition — handled in plain React, the way it was meant to be.",
   },
   {
-    icon: Sparkles,
-    title: "Zero requirements",
-    body: "No CLI to install. No config to wire. One curl command drops the components into your repo. Start in seconds.",
+    icon: Wand2,
+    title: "Animation first",
+    body: "Every component ships with motion baked in. Enter, exit, hover, press — tuned with framer-motion so interactions feel alive, not glued on after the fact.",
   },
 ];
 
