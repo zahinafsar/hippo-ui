@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ReactNode } from "react";
 import { registry } from "@/lib/registry";
 import { ThemeToggle } from "@/components/docs/theme-toggle";
@@ -7,7 +8,10 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-10 flex h-14 items-center justify-between border-b border-border bg-background/80 px-6 backdrop-blur">
-        <Link href="/" className="font-semibold">hunny-ui</Link>
+        <Link href="/" className="flex items-center gap-2 font-semibold">
+          <Image src="/logo.png" alt="hippo-ui" width={24} height={24} />
+          HippoUI
+        </Link>
         <ThemeToggle />
       </header>
       <div className="flex">

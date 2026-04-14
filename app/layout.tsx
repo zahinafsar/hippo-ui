@@ -9,8 +9,8 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "hunny-ui",
-  description: "Copy-paste React components. Tailwind for tokens, React for logic.",
+  title: "hippo-ui — copy-paste React components",
+  description: "Copy-paste React components. Tailwind tokens, framer-motion animations, zero dependencies you don't want.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
