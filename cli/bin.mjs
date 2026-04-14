@@ -5,13 +5,17 @@ import { dirname, join } from 'node:path';
 const BASE = 'https://zahinafsar.github.io/hippo-ui/registry';
 const COMPONENTS = ['accordion','alert','avatar','badge','breadcrumb','button','calendar','card','checkbox','combobox','command-palette','confirm-modal','data-table','date-picker','dialog','dropdown-menu','empty-state','input','label','pagination','popover','portal','progress','radio','select','separator','sheet','sidebar','skeleton','spinner','switch','table','tabs','textarea','toast','tooltip'];
 const LIB = ['cn.ts','hooks.ts','anchor.ts'];
+const THEMES = ['zinc','slate','rose','emerald','amber'];
+const SKILLS = ['hippo-ui'];
 
 function usage() {
   console.log(`Usage:
   npx myhippo clone                  install all components
   npx myhippo add <name...>          install listed components
   npx myhippo update <name...>       redownload listed components
-  npx myhippo remove <name...>       delete listed components`);
+  npx myhippo remove <name...>       delete listed components
+  npx myhippo theme <name>           install a theme preset (${THEMES.join('|')})
+  npx myhippo skill [name]           install agent skill (default: hippo-ui)`);
 }
 
 async function fetchFile(url, dest) {
@@ -41,6 +45,31 @@ const [cmd, ...rest] = process.argv.slice(2);
 
 if (!cmd || cmd === '-h' || cmd === '--help') {
   usage();
+  process.exit(0);
+}
+
+if (cmd === 'theme') {
+  const name = rest[0] || 'zinc';
+  if (!THEMES.includes(name)) {
+    console.error(`Unknown theme: ${name}. Available: ${THEMES.join(', ')}`);
+    process.exit(1);
+  }
+  console.log(`Installing hippo-ui theme: ${name}`);
+  await fetchFile(`${BASE}/themes/${name}.css`, join('styles', 'hippo-theme.css'));
+  console.log(`Done. Import in your global stylesheet:`);
+  console.log(`  @import "./styles/hippo-theme.css";`);
+  process.exit(0);
+}
+
+if (cmd === 'skill') {
+  const name = rest[0] || 'hippo-ui';
+  if (!SKILLS.includes(name)) {
+    console.error(`Unknown skill: ${name}. Available: ${SKILLS.join(', ')}`);
+    process.exit(1);
+  }
+  console.log(`Installing hippo-ui agent skill: ${name}`);
+  await fetchFile(`${BASE}/skills/${name}.md`, join('.claude', 'skills', name, 'SKILL.md'));
+  console.log(`Done. Claude Code will auto-load this skill next session.`);
   process.exit(0);
 }
 

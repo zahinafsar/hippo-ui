@@ -5,15 +5,21 @@ import path from "node:path";
 const root = path.resolve(new URL("..", import.meta.url).pathname);
 const srcUi = path.join(root, "components", "ui");
 const srcLib = path.join(root, "lib");
+const srcThemes = path.join(root, "themes");
+const srcSkills = path.join(root, "skills");
 const outBase = path.join(root, "public", "registry");
 const outUi = path.join(outBase, "ui");
 const outLib = path.join(outBase, "lib");
+const outThemes = path.join(outBase, "themes");
+const outSkills = path.join(outBase, "skills");
 
 const LIB_FILES = ["cn.ts", "hooks.ts", "anchor.ts"];
 
 if (existsSync(outBase)) await rm(outBase, { recursive: true });
 await mkdir(outUi, { recursive: true });
 await mkdir(outLib, { recursive: true });
+await mkdir(outThemes, { recursive: true });
+await mkdir(outSkills, { recursive: true });
 
 const uiFiles = (await readdir(srcUi)).filter((f) => f.endsWith(".tsx"));
 for (const f of uiFiles) {
@@ -21,6 +27,20 @@ for (const f of uiFiles) {
 }
 for (const f of LIB_FILES) {
   await copyFile(path.join(srcLib, f), path.join(outLib, f));
+}
+
+const themeFiles = existsSync(srcThemes)
+  ? (await readdir(srcThemes)).filter((f) => f.endsWith(".css"))
+  : [];
+for (const f of themeFiles) {
+  await copyFile(path.join(srcThemes, f), path.join(outThemes, f));
+}
+
+const skillFiles = existsSync(srcSkills)
+  ? (await readdir(srcSkills)).filter((f) => f.endsWith(".md"))
+  : [];
+for (const f of skillFiles) {
+  await copyFile(path.join(srcSkills, f), path.join(outSkills, f));
 }
 
 const components = uiFiles.map((f) => f.replace(/\.tsx$/, "")).sort();
@@ -57,4 +77,6 @@ echo "Done."
 
 await writeFile(path.join(root, "public", "install.sh"), script, { mode: 0o755 });
 
-console.log(`synced ${uiFiles.length} components + ${LIB_FILES.length} lib files`);
+console.log(
+  `synced ${uiFiles.length} components + ${LIB_FILES.length} lib files + ${themeFiles.length} themes + ${skillFiles.length} skills`
+);

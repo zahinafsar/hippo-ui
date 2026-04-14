@@ -25,6 +25,18 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
             >
               Introduction
             </Link>
+            <Link
+              href="/docs/theming"
+              className="rounded-md px-2 py-1.5 text-sm text-foreground hover:bg-accent"
+            >
+              Theming
+            </Link>
+            <Link
+              href="/docs/skill"
+              className="rounded-md px-2 py-1.5 text-sm text-foreground hover:bg-accent"
+            >
+              Agent Skill
+            </Link>
             <div className="mb-2 mt-4 text-xs font-semibold uppercase text-muted-foreground">Components</div>
             {registry.map((c) => (
               <Link
