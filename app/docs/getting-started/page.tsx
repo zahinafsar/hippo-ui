@@ -1,7 +1,7 @@
 import { CodeBlock } from "@/components/docs/code-block";
 
-const installAll = `curl -fsSL https://zahinafsar.github.io/hippo-ui/install.sh | bash`;
-const installOne = `curl -fsSL https://zahinafsar.github.io/hippo-ui/install.sh | bash -s button card dialog`;
+const installAll = `npx myhippo clone`;
+const installOne = `npx myhippo add button card dialog`;
 const manualLib = `// lib/cn.ts
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";

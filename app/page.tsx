@@ -73,7 +73,7 @@ function FloatingNav() {
           <span className="text-sm font-semibold text-white">HippoUI</span>
         </Link>
         <Link
-          href="/docs"
+          href="/docs/getting-started"
           className="rounded-lg px-4 py-1.5 text-sm font-medium text-white transition-all hover:opacity-90"
           style={{ background: BUTTON }}
         >

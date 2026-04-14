@@ -32,7 +32,7 @@ export default async function DocsIndex() {
             install={
               <div className="flex flex-col gap-3">
                 <p className="text-sm text-muted-foreground">Run in your project root:</p>
-                <CodeBlock code={`curl -fsSL https://zahinafsar.github.io/hippo-ui/install.sh | bash -s ${c.slug}`} />
+                <CodeBlock code={`npx myhippo add ${c.slug}`} />
                 <p className="text-sm text-muted-foreground">Or copy the source:</p>
                 <CodeBlock code={c.source} />
               </div>
