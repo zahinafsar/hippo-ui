@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import logo from "@/public/logo.png";
 import { useEffect, useRef } from "react";
 import { ArrowRight, Sparkles, Zap, Layers, Code2 } from "lucide-react";
 
@@ -68,7 +69,7 @@ function FloatingNav() {
     <nav className="fixed left-4 right-4 top-4 z-50 mx-auto max-w-5xl rounded-2xl border border-white/[0.08] bg-[#000000]/80 px-6 py-3 backdrop-blur-lg">
       <div className="flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="hippo-ui" width={28} height={28} className="rounded-lg" />
+          <Image src={logo} alt="hippo-ui" width={28} height={28} className="rounded-lg" />
           <span className="text-sm font-semibold text-white">HippoUI</span>
         </Link>
         <Link
@@ -142,7 +143,7 @@ function Footer() {
     <footer className="relative z-10 border-t border-white/[0.06] py-10">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-4 sm:flex-row">
         <div className="flex items-center gap-2 text-xs text-white/30">
-          <Image src="/logo.png" alt="hippo-ui" width={20} height={20} />
+          <Image src={logo} alt="hippo-ui" width={20} height={20} />
           hippo-ui — MIT
         </div>
         <div className="flex items-center gap-5 text-xs text-white/30">
