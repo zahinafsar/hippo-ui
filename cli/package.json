@@ -1,6 +1,6 @@
 {
   "name": "myhippo",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Copy-paste React UI components. Tailwind + motion. You own the code.",
   "type": "module",
   "bin": {
@@ -8,6 +8,7 @@
   },
   "files": [
     "bin.mjs",
+    "lib",
     "README.md"
   ],
   "keywords": ["react", "ui", "tailwind", "components", "copy-paste"],
