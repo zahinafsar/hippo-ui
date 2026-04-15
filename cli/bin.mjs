@@ -7,7 +7,7 @@ import { selectOption } from './lib/select.mjs';
 import { pickFile } from './lib/picker.mjs';
 
 const BASE = 'https://zahinafsar.github.io/hippo-ui/registry';
-const COMPONENTS = ['accordion','alert','avatar','badge','breadcrumb','button','calendar','card','checkbox','combobox','command-palette','confirm-modal','data-table','date-picker','dialog','dropdown-menu','empty-state','input','label','pagination','popover','portal','progress','radio','select','separator','sheet','sidebar','skeleton','spinner','switch','table','tabs','textarea','toast','tooltip'];
+const COMPONENTS = ['accordion','alert','avatar','badge','breadcrumb','button','calendar','card','checkbox','combobox','command-palette','confirm-modal','data-table','date-picker','date-time-picker','dialog','dropdown-menu','empty-state','file-input','input','label','pagination','popover','portal','progress','radio','select','separator','sheet','sidebar','skeleton','spinner','switch','table','tabs','textarea','toast','tooltip'];
 const LIB = ['cn.ts','hooks.ts','anchor.ts'];
 const THEMES = ['midnight','graphite','claude','sunset','ocean','forest','nord','dracula','mocha','sakura','solarized','monokai'];
 const SKILLS = ['hippo-ui'];

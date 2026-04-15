@@ -3,6 +3,7 @@ export const registry = [
   { slug: "badge", name: "Badge", description: "Status label with color variants and icon support." },
   { slug: "card", name: "Card", description: "Container with header, content, footer." },
   { slug: "input", name: "Input", description: "Text input with optional left/right icons." },
+  { slug: "file-input", name: "FileInput", description: "File picker with drag-and-drop and image preview." },
   { slug: "label", name: "Label", description: "Form label with top/bottom/left/right positioning." },
   { slug: "separator", name: "Separator", description: "Horizontal or vertical divider." },
   { slug: "skeleton", name: "Skeleton", description: "Loading placeholder." },
@@ -33,6 +34,7 @@ export const registry = [
   { slug: "combobox", name: "Combobox", description: "Searchable single-select." },
   { slug: "calendar", name: "Calendar", description: "Month calendar (date-fns)." },
   { slug: "date-picker", name: "DatePicker", description: "Date input with calendar popover." },
+  { slug: "date-time-picker", name: "DateTimePicker", description: "Date + time input with calendar popover." },
   { slug: "command-palette", name: "CommandPalette", description: "Cmd+K fuzzy search (cmdk)." },
   { slug: "data-table", name: "DataTable", description: "Sortable filterable paginated table (@tanstack/react-table)." },
 ] as const;

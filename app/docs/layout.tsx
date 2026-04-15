@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { registry } from "@/lib/registry";
 import { ThemeToggle } from "@/components/docs/theme-toggle";
 import { PaletteSwitcher } from "@/components/docs/palette-switcher";
+import { ComponentSearch } from "@/components/docs/component-search";
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
@@ -14,7 +15,8 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
           <Image src={logo} alt="hippo-ui" width={24} height={24} />
           HippoUI
         </Link>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-3">
+          <ComponentSearch items={registry} />
           <PaletteSwitcher />
           <ThemeToggle />
         </div>
@@ -45,7 +47,7 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
             {registry.map((c) => (
               <Link
                 key={c.slug}
-                href={`/docs#${c.slug}`}
+                href={`/docs/${c.slug}`}
                 className="rounded-md px-2 py-1.5 text-sm text-foreground hover:bg-accent"
               >
                 {c.name}

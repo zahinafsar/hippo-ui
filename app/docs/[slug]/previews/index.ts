@@ -4,6 +4,7 @@ import Button from "./button";
 import Badge from "./badge";
 import Card from "./card";
 import Input from "./input";
+import FileInput from "./file-input";
 import Label from "./label";
 import Separator from "./separator";
 import Skeleton from "./skeleton";
@@ -34,6 +35,7 @@ import Sidebar from "./sidebar";
 import Combobox from "./combobox";
 import Calendar from "./calendar";
 import DatePicker from "./date-picker";
+import DateTimePicker from "./date-time-picker";
 import CommandPalette from "./command-palette";
 import DataTable from "./data-table";
 
@@ -42,6 +44,7 @@ export const previews: Record<ComponentSlug, ComponentType> = {
   badge: Badge,
   card: Card,
   input: Input,
+  "file-input": FileInput,
   label: Label,
   separator: Separator,
   skeleton: Skeleton,
@@ -72,6 +75,7 @@ export const previews: Record<ComponentSlug, ComponentType> = {
   combobox: Combobox,
   calendar: Calendar,
   "date-picker": DatePicker,
+  "date-time-picker": DateTimePicker,
   "command-palette": CommandPalette,
   "data-table": DataTable,
 };

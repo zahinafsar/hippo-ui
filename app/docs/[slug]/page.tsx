@@ -19,7 +19,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
     getPreviewSource(slug),
     getSource(slug),
   ]);
-  const installCmd = `curl -fsSL https://zahinafsar.github.io/hippo-ui/install.sh | bash -s ${slug}`;
+  const installCmd = `npx myhippo add ${slug}`;
 
   return (
     <div className="flex flex-col gap-6">
