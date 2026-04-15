@@ -1,9 +1,9 @@
 export const registry = [
   { slug: "button", name: "Button", description: "Clickable button with variants, sizes, loading state." },
-  { slug: "badge", name: "Badge", description: "Label for status or category." },
+  { slug: "badge", name: "Badge", description: "Status label with color variants and icon support." },
   { slug: "card", name: "Card", description: "Container with header, content, footer." },
-  { slug: "input", name: "Input", description: "Text input field." },
-  { slug: "label", name: "Label", description: "Form field label." },
+  { slug: "input", name: "Input", description: "Text input with optional left/right icons." },
+  { slug: "label", name: "Label", description: "Form label with top/bottom/left/right positioning." },
   { slug: "separator", name: "Separator", description: "Horizontal or vertical divider." },
   { slug: "skeleton", name: "Skeleton", description: "Loading placeholder." },
   { slug: "spinner", name: "Spinner", description: "Loading indicator." },

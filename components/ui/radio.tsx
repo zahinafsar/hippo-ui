@@ -19,7 +19,7 @@ export function RadioGroup({ value, defaultValue = "", onValueChange, name = "ra
   const [val, setVal] = useControllable(value, defaultValue, onValueChange);
   return (
     <RadioGroupCtx.Provider value={{ value: val, setValue: setVal, name }}>
-      <div role="radiogroup" className={cn("flex flex-col gap-2", className)}>
+      <div role="radiogroup" className={cn("flex flex-col items-start gap-2", className)}>
         {children}
       </div>
     </RadioGroupCtx.Provider>

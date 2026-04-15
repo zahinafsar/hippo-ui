@@ -1,13 +1,16 @@
 import { registry } from "@/lib/registry";
-import { getSource } from "@/lib/get-source";
+import { getSource, getPreviewSource } from "@/lib/get-source";
 import { CodeBlock } from "@/components/docs/code-block";
 import { DemoTabs } from "@/components/docs/demo-tabs";
-import { examples } from "./[slug]/examples";
-import { usage } from "./[slug]/usage";
+import { previews } from "./[slug]/previews";
 
 export default async function DocsIndex() {
   const items = await Promise.all(
-    registry.map(async (c) => ({ ...c, source: await getSource(c.slug) }))
+    registry.map(async (c) => ({
+      ...c,
+      source: await getSource(c.slug),
+      previewSource: await getPreviewSource(c.slug),
+    }))
   );
 
   return (
@@ -19,27 +22,30 @@ export default async function DocsIndex() {
         </p>
       </div>
 
-      {items.map((c) => (
-        <section key={c.slug} id={c.slug} className="flex flex-col gap-4 scroll-mt-20">
-          <div className="flex items-baseline justify-between gap-4 border-b border-border pb-2">
-            <h2 className="text-2xl font-semibold">{c.name}</h2>
-            <code className="text-xs text-muted-foreground">components/ui/{c.slug}.tsx</code>
-          </div>
-          <p className="text-sm text-muted-foreground">{c.description}</p>
-          <DemoTabs
-            preview={examples[c.slug]}
-            code={<CodeBlock code={usage[c.slug]} />}
-            install={
-              <div className="flex flex-col gap-3">
-                <p className="text-sm text-muted-foreground">Run in your project root:</p>
-                <CodeBlock code={`npx myhippo add ${c.slug}`} />
-                <p className="text-sm text-muted-foreground">Or copy the source:</p>
-                <CodeBlock code={c.source} />
-              </div>
-            }
-          />
-        </section>
-      ))}
+      {items.map((c) => {
+        const Preview = previews[c.slug];
+        return (
+          <section key={c.slug} id={c.slug} className="flex flex-col gap-4 scroll-mt-20">
+            <div className="flex items-baseline justify-between gap-4 border-b border-border pb-2">
+              <h2 className="text-2xl font-semibold">{c.name}</h2>
+              <code className="text-xs text-muted-foreground">components/ui/{c.slug}.tsx</code>
+            </div>
+            <p className="text-sm text-muted-foreground">{c.description}</p>
+            <DemoTabs
+              preview={<Preview />}
+              code={<CodeBlock code={c.previewSource} />}
+              install={
+                <div className="flex flex-col gap-3">
+                  <p className="text-sm text-muted-foreground">Run in your project root:</p>
+                  <CodeBlock code={`npx myhippo add ${c.slug}`} />
+                  <p className="text-sm text-muted-foreground">Or copy the source:</p>
+                  <CodeBlock code={c.source} />
+                </div>
+              }
+            />
+          </section>
+        );
+      })}
     </div>
   );
 }

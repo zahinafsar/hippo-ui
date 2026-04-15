@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 import { registry, type ComponentSlug } from "@/lib/registry";
-import { getSource } from "@/lib/get-source";
+import { getSource, getPreviewSource } from "@/lib/get-source";
 import { CodeBlock } from "@/components/docs/code-block";
 import { DemoTabs } from "@/components/docs/demo-tabs";
-import { examples } from "./examples";
-import { usage } from "./usage";
+import { previews } from "./previews";
 
 export function generateStaticParams() {
   return registry.map((c) => ({ slug: c.slug }));
@@ -15,9 +14,11 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
   const meta = registry.find((c) => c.slug === slug);
   if (!meta) notFound();
 
-  const source = await getSource(slug);
-  const example = examples[slug as ComponentSlug];
-  const usageCode = usage[slug as ComponentSlug];
+  const Preview = previews[slug as ComponentSlug];
+  const [previewSource, source] = await Promise.all([
+    getPreviewSource(slug),
+    getSource(slug),
+  ]);
   const installCmd = `curl -fsSL https://zahinafsar.github.io/hippo-ui/install.sh | bash -s ${slug}`;
 
   return (
@@ -27,8 +28,8 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
         <p className="mt-2 text-muted-foreground">{meta.description}</p>
       </div>
       <DemoTabs
-        preview={example}
-        code={<CodeBlock code={usageCode} />}
+        preview={<Preview />}
+        code={<CodeBlock code={previewSource} />}
         install={
           <div className="flex flex-col gap-3">
             <p className="text-sm text-muted-foreground">
