@@ -26,7 +26,6 @@ import Alert from "./alert";
 import Avatar from "./avatar";
 import Progress from "./progress";
 import Breadcrumb from "./breadcrumb";
-import Pagination from "./pagination";
 import EmptyState from "./empty-state";
 import Tabs from "./tabs";
 import Accordion from "./accordion";
@@ -66,7 +65,6 @@ export const previews: Record<ComponentSlug, ComponentType> = {
   avatar: Avatar,
   progress: Progress,
   breadcrumb: Breadcrumb,
-  pagination: Pagination,
   "empty-state": EmptyState,
   tabs: Tabs,
   accordion: Accordion,

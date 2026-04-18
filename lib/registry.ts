@@ -25,7 +25,6 @@ export const registry = [
   { slug: "avatar", name: "Avatar", description: "User image with fallback initials." },
   { slug: "progress", name: "Progress", description: "Linear progress bar." },
   { slug: "breadcrumb", name: "Breadcrumb", description: "Hierarchy navigation." },
-  { slug: "pagination", name: "Pagination", description: "Paged navigation with siblings." },
   { slug: "empty-state", name: "EmptyState", description: "Placeholder for empty views." },
   { slug: "tabs", name: "Tabs", description: "Tab panels." },
   { slug: "accordion", name: "Accordion", description: "Collapsible sections." },
