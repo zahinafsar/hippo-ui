@@ -28,7 +28,7 @@ export function ComponentSearch({ items }: { items: readonly Item[] }) {
   }, []);
 
   return (
-    <div ref={rootRef} className="relative w-64">
+    <div ref={rootRef} className="relative w-40 sm:w-56 md:w-64">
       <Input
         value={q}
         onChange={(e) => setQ(e.target.value)}

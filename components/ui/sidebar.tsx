@@ -33,6 +33,7 @@ export function Sidebar({ collapsed, defaultCollapsed = false, onCollapsedChange
   return (
     <SidebarCtx.Provider value={{ collapsed: value, toggle }}>
       <motion.aside
+        initial={false}
         animate={{ width: value ? 64 : 256 }}
         transition={{ type: "tween", duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
         className={cn("flex h-full flex-col overflow-hidden border-r border-border bg-card", className)}
