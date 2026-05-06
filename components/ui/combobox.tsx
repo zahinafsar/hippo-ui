@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState, useMemo, KeyboardEvent } from "react";
 import { ChevronsUpDown, Check } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/cn";
 import { useClickOutside, useEscapeKey, useControllable } from "@/lib/hooks";
 
@@ -77,42 +78,50 @@ export function Combobox({
           placeholder={placeholder}
           className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
         />
-        <ChevronsUpDown className="h-4 w-4 opacity-50" />
+        <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.15 }}>
+          <ChevronsUpDown className="h-4 w-4 opacity-50" />
+        </motion.span>
       </div>
-      {open && (
-        <ul
-          role="listbox"
-          className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md border border-border bg-card py-1 shadow-md"
-        >
-          {filtered.length === 0 && (
-            <li className="px-3 py-2 text-sm text-muted-foreground">{emptyMessage}</li>
-          )}
-          {filtered.map((opt, i) => {
-            const isSelected = opt.value === val;
-            const isActive = i === active;
-            return (
-              <li
-                key={opt.value}
-                role="option"
-                aria-selected={isSelected}
-                onMouseEnter={() => setActive(i)}
-                onClick={() => {
-                  setVal(opt.value);
-                  setQuery("");
-                  setOpen(false);
-                }}
-                className={cn(
-                  "flex cursor-pointer items-center justify-between px-3 py-1.5 text-sm",
-                  isActive && "bg-accent text-accent-foreground"
-                )}
-              >
-                {opt.label}
-                {isSelected && <Check className="h-4 w-4" />}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            role="listbox"
+            initial={{ opacity: 0, scale: 0.95, y: -4 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -4 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="absolute z-50 mt-1 max-h-60 w-full origin-top overflow-auto rounded-md border border-border bg-card py-1 shadow-md"
+          >
+            {filtered.length === 0 && (
+              <li className="px-3 py-2 text-sm text-muted-foreground">{emptyMessage}</li>
+            )}
+            {filtered.map((opt, i) => {
+              const isSelected = opt.value === val;
+              const isActive = i === active;
+              return (
+                <li
+                  key={opt.value}
+                  role="option"
+                  aria-selected={isSelected}
+                  onMouseEnter={() => setActive(i)}
+                  onClick={() => {
+                    setVal(opt.value);
+                    setQuery("");
+                    setOpen(false);
+                  }}
+                  className={cn(
+                    "flex cursor-pointer items-center justify-between px-3 py-1.5 text-sm",
+                    isActive && "bg-accent text-accent-foreground"
+                  )}
+                >
+                  {opt.label}
+                  {isSelected && <Check className="h-4 w-4" />}
+                </li>
+              );
+            })}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
