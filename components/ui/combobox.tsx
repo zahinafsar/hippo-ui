@@ -64,7 +64,7 @@ export function Combobox({
 
   return (
     <div ref={rootRef} className={cn("relative inline-block w-64", className)}>
-      <div className="flex h-10 items-center rounded-md border border-input bg-background px-3 focus-within:ring-2 focus-within:ring-ring">
+      <div className="flex h-10 items-center rounded-md border border-input bg-muted px-3 focus-within:ring-2 focus-within:ring-ring">
         <input
           ref={inputRef}
           value={open ? query : selected?.label ?? ""}

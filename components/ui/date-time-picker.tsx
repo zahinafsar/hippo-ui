@@ -56,7 +56,7 @@ export function DateTimePicker({
         type="button"
         onClick={() => setOpen((o) => !o)}
         className={cn(
-          "inline-flex h-10 w-64 items-center gap-2 rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "inline-flex h-10 w-64 items-center gap-2 rounded-md border border-input bg-muted px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           className
         )}
       >
